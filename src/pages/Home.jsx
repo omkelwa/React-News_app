@@ -22,18 +22,18 @@ const {quote, dispatch} = useContext(quoteContext)
     })
   }
 
-  const handelJoke = async ()=>{
-    const data = await getJoke()
-    jokeDispatch({
-      type:"GET_JOKES",
-      payload : data
-    })
-    console.log(data.joke);
-  }
+  // const handelJoke = async ()=>{
+  //   const data = await getJoke()
+  //   jokeDispatch({
+  //     type:"GET_JOKES",
+  //     payload : data
+  //   })
+  //   console.log(data.joke);
+  // }
   return (
     <>
     
-    <div class="row p-3">
+    <div class="row p-3 m-auto">
   <div class="col-sm-6 mb-3 mb-sm-0 col-lg-5">
     <div class="card shadow-lg p-3 mb-5 bg-body rounded">
       <div class="card-body">
@@ -44,7 +44,7 @@ const {quote, dispatch} = useContext(quoteContext)
       </div>
     </div>
   </div>
-  <div class="col-sm-6 col-lg-5">
+  {/* <div class="col-sm-6 col-lg-5">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Jokes's</h5>
@@ -52,16 +52,8 @@ const {quote, dispatch} = useContext(quoteContext)
         <a href="#" class="btn btn-primary w-100" onClick={()=>handelJoke()}>Get More</a>
       </div>
     </div>
-  </div>
-  <div class="col-sm-6 col-lg-2">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary w-100">Get More</a>
-      </div>
-    </div>
-  </div>
+  </div> */}
+  
 </div>
     
     <div className="row p-5">

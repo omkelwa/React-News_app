@@ -1,20 +1,29 @@
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { getNews } from "../context/newsContext/NewsActions"
 import NewsContext from "../context/newsContext/NewsContext"
 
 function Navbar (){
 
   const {dispatch} = useContext(NewsContext)
+  
+  const fetchNews = async (topic)=>{
+    const data = await getNews(topic)
+    // console.log(data)
+    dispatch({
+      type:"GET_NEWS",
+      payload: data
+    })
+  }
+const [text, setText] = useState("")
 const handleSubmit = async (e)=>{
   e.preventDefault()
-  const data = await getNews()
-  // console.log(data)
-  dispatch({
-    type:"GET_NEWS",
-    payload: data
-  })
+  fetchNews(text)
+  setText("")
 }
 
+useEffect(()=>{
+fetchNews("india")
+},[])
 
 
 
@@ -24,7 +33,7 @@ const handleSubmit = async (e)=>{
   <div class="container-fluid">
     <a class="navbar-brand fw-bold">Atom News</a>
     <form class="d-flex" role="search" onSubmit={(e)=>handleSubmit(e)}>
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+      <input value={text} class="form-control me-2" type="search" placeholder="Search" aria-label="Search" onChange={(e)=>setText(e.target.value)}/>
       <button class="btn btn-outline-success" type="submit" >Search</button>
     </form>
   </div>
@@ -38,40 +47,40 @@ const handleSubmit = async (e)=>{
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link " aria-current="page" href="#">Business</a>
+          <a class="nav-link " aria-current="page" href="#" onClick={(e)=>fetchNews("Business")}>Business</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " aria-current="page" href="#">Finance</a>
+          <a class="nav-link " aria-current="page" href="#" onClick={(e)=>fetchNews("Finance")}>Finance</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Sports</a>
+          <a class="nav-link" href="#" onClick={(e)=>fetchNews("sports")}>Sports</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Health</a>
+          <a class="nav-link" href="#" onClick={(e)=>fetchNews("Health")}>Health</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Web Development</a>
+          <a class="nav-link" href="#"onClick={(e)=>fetchNews("web development")}>Web Development</a>
         </li>
          <li class="nav-item">
-          <a class="nav-link" href="#">Programming</a>
+          <a class="nav-link" href="#" onClick={(e)=>fetchNews("Programing")}>Programming</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Meta</a>
+          <a class="nav-link" href="#"onClick={(e)=>fetchNews("meta")}>Meta</a>
         </li>
          <li class="nav-item">
-          <a class="nav-link" href="#">Science</a>
+          <a class="nav-link" href="#"onClick={(e)=>fetchNews("science")}>Science</a>
         </li>
          <li class="nav-item">
-          <a class="nav-link" href="#">Technology</a>
+          <a class="nav-link" href="#" onClick={(e)=>fetchNews("technology")}>Technology</a>
         </li>
          <li class="nav-item">
-          <a class="nav-link" href="#">Entertainment</a>
+          <a class="nav-link" href="#" onClick={(e)=>fetchNews("Entertainment")}>Entertainment</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Bollywood</a>
+          <a class="nav-link" href="#"onClick={(e)=>fetchNews("bollywood")}>Bollywood</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Fashion</a>
+          <a class="nav-link" href="#" onClick={(e)=>fetchNews("Fashion")}>Fashion</a>
         </li>
       </ul>
       
